@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { InputTodos } from "./components/InputTodos";
+import { IncompleteTodos } from "./components/IncompleteTodos";
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -20,24 +22,20 @@ export const Todo = () => {
   }
 
   return (
-    <div>
-      <h1>Todoリスト</h1>
-      {/* 入力エリア */}
-      <div>
-        <input placeholder="TODOを追加" value={todoText} onChange={onChangeTodoText}/>
-        <button onClick={onClickAdd}>追加</button>
-      </div>
-      {/* タスク一覧 */}
-      <div>
-        <p>完了のタスク</p>
-        <ul>
-          {incompleteTodos.map((todo, index) => (
-            <li key={todo}>
-              <p>{todo}</p>
-              <button onClick = {() => onClickDelete(index)}>削除</button>
-            </li>
-          ))}
-        </ul>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Todoリスト</h1>
+        <div className="bg-white rounded-xl shadow-lg p-6 space-y-6">
+          <InputTodos
+            todoText={todoText}
+            onChangeTodoText={onChangeTodoText}
+            onClickAdd={onClickAdd}
+          />
+          <IncompleteTodos
+            incompleteTodos={incompleteTodos}
+            onClickDelete={onClickDelete}
+          />
+        </div>
       </div>
     </div>
   );
