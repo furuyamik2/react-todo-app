@@ -60,7 +60,7 @@ const Todo = () => {
     try {
       const { error } = await supabase
         .from('todos')
-        .update({ completed: true })
+        .delete()
         .eq('id', id);
 
       if (error) {
